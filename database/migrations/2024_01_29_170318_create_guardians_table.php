@@ -11,12 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('parents', function (Blueprint $table) {
+        Schema::create('guardians', function (Blueprint $table) {
             $table->id();
 	        $table->timestamps();
 	        $table->string('cpf');
 	        $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+		$table->foreign('user_id')
+			->references('id')
+			->on('users')
+			->constrained()
+			->onUpdate('cascade')
+			->onDelete('cascade');
         });
     }
 
@@ -25,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('parents');
+        Schema::dropIfExists('guardians');
     }
 };

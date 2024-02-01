@@ -16,7 +16,12 @@ return new class extends Migration
 	    $table->timestamps();
 	    $table->string('matricula');
 	    $table->unsignedBigInteger('user_id');
-	    $table->foreign('user_id')->references('id')->on('users');
+	    $table->foreign('user_id')
+	   	->references('id')
+		->on('users')
+		->constrained()
+		->onUpdate('cascade')
+		->onDelete('cascade');
         });
     }
 
