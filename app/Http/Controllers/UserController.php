@@ -9,29 +9,19 @@ use App\Http\Requests\UserRequest;
 class UserController extends Controller
 {
 
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
-    {
-         $users = User::all();
-         return $users;
-    }
+    private UserService $userService;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    public function __construct(UserService $userService) {
+        $this->userService=$userService;
     }
-
-    /**
+    
+    
+      /**
      * Store a newly created resource in storage.
      */
     public function store(UserRequest $request)
     {
- 	  	return UserService::createUser($request);
+ 	  	return $this->userService->createUser($request);
     }
 
     /**
@@ -39,24 +29,17 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return UserService::showUser($id);
+        return $this->userService->showUser($id);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        $user=User::find($id);
-    }
-
+ 
     /**
      * Update the specified resource in storage.
      */
     public function update(UserRequest $request, string $id)
     {
 		
-     return UserService::updateUser($request, $id);
+     return $this->userService->updateUser($request, $id);
 
     }
 
@@ -65,6 +48,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {              
-        return UserService::deleteUser($id);
+        return $this->userService->deleteUser($id);
     }
 }
