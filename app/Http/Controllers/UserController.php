@@ -3,12 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\User;
-use App\Models\Guardian;
-use App\Models\Student;
+use App\Services\UserService;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      */
@@ -29,33 +29,9 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
- 	   $validatedData = $request->validate([
-            'name' => 'required', 'string',
-            'email' => 'required', 'string',
-            'user_type' => 'required', 'string',
-            'cpf' => 'required_without:matricula', 'nullable', 'string',
-            'matricula' => 'required_without:cpf', 'nullable', 'string',
-       ]);
-
-	   $user = User::create($request->all());
-
-       if(!empty($request->cpf)) {
-        Guardian::create([ 
-            'user_id' => $user->id,
-	    'cpf' => $request->cpf,
-        ]);
-        return "Guardian created successfully.";
-       }
-       
-       if(!empty($request->matricula)) { 
-        Student:: create([ 
-            'user_id' => $user->id,
-            'matricula' => $request->matricula,
-        ]);
-        return "Student created successfully.";
-       }
+ 	  	return UserService::createUser($request);
     }
 
     /**
@@ -63,8 +39,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        $user = User::find($id);
-        return $user;
+        return UserService::showUser($id);
     }
 
     /**
@@ -78,20 +53,10 @@ class UserController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UserRequest $request, string $id)
     {
-	$validatedData = $request->validate([
-            'name' => 'required', 'string',
-            'email' => 'required', 'string',
-            'user_type' => 'required', 'string',
-            'cpf' => 'required_without:matricula', 'nullable', 'string',
-            'matricula' => 'required_without:cpf', 'nullable', 'string',
-	 ]);
-
-	$user = User::findOrFail($id);
-	$user->update($request->all());
-
-	 return "Updated successfully.";
+		
+     return UserService::updateUser($request, $id);
 
     }
 
@@ -99,10 +64,7 @@ class UserController extends Controller
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
-    {
-        $user = User::findOrFail($id);
-        $user->delete();
-                
-        return "User deleted sucessfully!";
+    {              
+        return UserService::deleteUser($id);
     }
 }
