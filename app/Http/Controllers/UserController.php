@@ -13,8 +13,7 @@ class UserController extends Controller
 
     public function __construct(UserService $userService) {
         $this->userService=$userService;
-    }
-    
+    }  
     
       /**
      * Store a newly created resource in storage.
