@@ -13,12 +13,24 @@ return new class extends Migration
     {
         Schema::create('loans', function (Blueprint $table) {
             $table->id();
-	    $table->timestamps();
-	    $table->string('devolution');
-	    $table->unsignedBigInteger('user_id');
+	        $table->timestamps();
+	        $table->string('devolution');
+	        $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('exemplary_id');
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('exemplary_id')->references('id')->on('exemplarys');
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->constrained()
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+
+            $table->foreign('exemplary_id')
+                ->references('id')
+			    ->on('exemplarys')
+			    ->constrained()
+			    ->onUpdate('cascade')
+			    ->onDelete('cascade');
+
         });
     }
 

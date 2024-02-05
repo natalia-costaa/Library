@@ -11,14 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('guardians', function (Blueprint $table) {
+        Schema::create('articles', function (Blueprint $table) {
             $table->id();
-	        $table->timestamps();
-	        $table->string('cpf');
-	        $table->unsignedBigInteger('user_id');
-		    $table->foreign('user_id')
+            $table->timestamps();
+            $table->string('author');
+            $table->unsignedBigInteger('exemplary_id');
+		    $table->foreign('exemplary_id')
 			    ->references('id')
-			    ->on('users')
+			    ->on('exemplarys')
 			    ->constrained()
 			    ->onUpdate('cascade')
 			    ->onDelete('cascade');
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('guardians');
+        Schema::dropIfExists('articles');
     }
 };
