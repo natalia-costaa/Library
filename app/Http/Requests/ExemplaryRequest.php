@@ -26,7 +26,7 @@ class ExemplaryRequest extends FormRequest
             'author' => 'required',
             'exemplary_type' => 'required',
             'editorial'=> 'required_without:publisher',
-            'publisher' => 'rrequired_without:editorial',
+            'publisher' => 'required_without:editorial',
         ];
     }
 }
