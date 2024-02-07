@@ -2,28 +2,28 @@
 
 namespace App\Repositories;
 
-use App\Models\User;
-use App\Models\Guardian;
-use App\Models\Student;
-use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Models\Exemplary;
+use App\Models\Book;
+use App\Models\Article;
+use App\Repositories\Contracts\ExemplaryRepositoryInterface;
 
-class UserRepository implements UserRepositoryInterface {
+class ExemplaryRepository implements ExemplaryRepositoryInterface {
 
         protected $entity;
 
-        public function __construct(User $user)
+        public function __construct(Exemplary $exemplary)
         {
-        $this->entity=$user;
-    }
+        	$this->entity=$exemplary;
+   	}	
 
-        public function createUser($request)
+        public function createExemplary($request)
         {
-                $user = $this->entity->create($request->all());
+                $exemplary = $this->entity->create($request->all());
 
-                if(!empty($request->cpf)) {
-                   Guardian::create([
-                'user_id' => $user->id,
-                        'cpf' => $request->cpf,
+                if(!empty($request->publishing_company)) {
+                   Book::create([
+                	'exemplary_id' => $exemplary->id,
+                        'publishing_company' => $request->publishing_company,
                  ]);
 
                         return "Guardian created sucessfully!";

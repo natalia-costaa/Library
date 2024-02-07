@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->string('author');
-            $table->string('publishing_company');
+            $table->string('editorial');
 	        $table->unsignedBigInteger('exemplary_id');
 		    $table->foreign('exemplary_id')
 			    ->references('id')
