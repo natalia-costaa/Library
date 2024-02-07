@@ -20,40 +20,41 @@ class ExemplaryRepository implements ExemplaryRepositoryInterface {
         {
                 $exemplary = $this->entity->create($request->all());
 
-                if(!empty($request->publishing_company)) {
+                if(!empty($request->editorial)) {
                    Book::create([
-                	'exemplary_id' => $exemplary->id,
-                        'publishing_company' => $request->publishing_company,
+			'exemplary_id' => $exemplary->id,
+			'author' => $exemplary->author,
+                        'editorial' => $request->editorial,
                  ]);
 
-                        return "Guardian created sucessfully!";
+                   return "Book created sucessfully!";
 
-                        } else {
-                  Student:: create([
-                'user_id' => $user->id,
-                'matricula' => $request->matricula,
-                        ]);
-                        return "Student created sucessfully!";
-                        }
+                } else {
+                  Article:: create([
+                	'exemplary_id' => $exemplary->id,
+                	'publisher' => $request->publisher,
+                ]);
+                   return "Article created sucessfully!";
+                }
         }
 
-        public function showUser($id)
+        public function showExemplary($id)
         {
                 return $this->entity->findOrFail($id);
         }
 
-        public function updateUser($request, $id)
+        public function updateExemplary($request, $id)
         {
                 $user = $this->entity->findOrFail($id);
                 $user->update($request->all());
-                return "User updated sucessfully!";
+                return "Exemplary updated sucessfully!";
         }
 
-        public function deleteUser($id)
+        public function deleteExemplary($id)
         {
                 $user = $this->entity->findOrFail($id);
                 $user->delete();
-                return "User delete sucessfully!";
+                return "Exemplary delete sucessfully!";
         }
 
 
