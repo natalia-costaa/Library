@@ -11,7 +11,7 @@ class Exemplary extends Model
 
     protected $fillable = [
         'name',
-        'author'
+        'author',
         'exemplary_type',
     ];
 }

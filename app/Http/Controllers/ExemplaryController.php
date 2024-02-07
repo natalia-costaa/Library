@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Services\ExemplaryService;
-use App\Http\Requests;
+use App\Http\Requests\ExemplaryRequest;
 
 class ExemplaryController extends Controller
 {
@@ -46,6 +46,4 @@ class ExemplaryController extends Controller
     {              
         return $this->exemplaryService->deleteExemplary($id);
     }
-}
-
 }

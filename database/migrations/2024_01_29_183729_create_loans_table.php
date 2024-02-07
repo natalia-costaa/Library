@@ -26,7 +26,7 @@ return new class extends Migration
 
             $table->foreign('exemplary_id')
                 ->references('id')
-			    ->on('exemplarys')
+			    ->on('exemplaries')
 			    ->constrained()
 			    ->onUpdate('cascade')
 			    ->onDelete('cascade');

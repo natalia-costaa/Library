@@ -11,7 +11,7 @@ class ExemplaryRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -25,8 +25,8 @@ class ExemplaryRequest extends FormRequest
             'name' => 'required',
             'author' => 'required',
             'exemplary_type' => 'required',
-            'editorial'=> 'required',
-            'publisher' => 'required',
+            'editorial'=> 'required_without:publisher',
+            'publisher' => 'rrequired_without:editorial',
         ];
     }
 }
