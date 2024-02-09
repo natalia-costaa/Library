@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use App\Repositories\UserRepository;
+use App\Repositories\Contracts\UserRepositoryInterface;
 
-class UserService {
+class UserService implements UserServiceInterface {
 
-	private $userRepository;
+	private $repository;
 
-    public function __construct(UserRepository $userRepository) {
-        $this->userRepository=$userRepository;
-    }  
+	public function __construct(userRepositoryInterfaceInterface $repository) {
+        	$this->repository=$repository;
+   	}  
 
 	public function createUser($request)
 	{
