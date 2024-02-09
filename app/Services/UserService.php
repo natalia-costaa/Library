@@ -3,33 +3,35 @@
 namespace App\Services;
 
 use App\Repositories\Contracts\UserRepositoryInterface;
+use App\Http\Requests\UserRequest;
+use App\Services\Interfaces\UserServiceInterface;
 
 class UserService implements UserServiceInterface {
 
 	private $repository;
 
-	public function __construct(userRepositoryInterfaceInterface $repository) {
+	public function __construct(userRepositoryInterface $repository) {
         	$this->repository=$repository;
    	}  
 
-	public function createUser($request)
+	public function store(UserRequest $request)
 	{
-		return $this->userRepository->createUser($request);
+		return $this->repository->createUser($request);
 	}
 
-	public function showUser($id)
+	public function show(string $id)
 	{
-		return $this->userRepository->showUser($id);
+		return $this->repository->showUser($id);
 	}
 
-	public function updateUser($request, string $id)
+	public function update(UserRequest $request, string $id)
 	{
-		return $this->userRepository->updateUser($request, $id);
+		return $this->repository->updateUser($request, $id);
 	}
 
-	public function deleteUser(string $id)
+	public function destroy(string $id)
 	{
-		return $this->userRepository->deleteUser($id);
+		return $this->repository->deleteUser($id);
 	}
 
 

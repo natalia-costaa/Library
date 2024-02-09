@@ -3,16 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\UserService;
 use App\Http\Requests\UserRequest;
+use App\Services\Interfaces\UserServiceInterface;
 
 class UserController extends Controller
 {
 
-    private UserService $userService;
+    private $service;
 
-    public function __construct(UserService $userService) {
-        $this->userService=$userService;
+    public function __construct(UserServiceInterface $service) {
+        $this->service=$service;
     }  
     
       /**
@@ -20,7 +20,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
- 	  	return $this->userService->createUser($request);
+ 	  	return $this->service->store($request);
     }
 
     /**
@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return $this->userService->showUser($id);
+        return $this->service->show($id);
     }
 
  
@@ -38,7 +38,7 @@ class UserController extends Controller
     public function update(UserRequest $request, string $id)
     {
 		
-     return $this->userService->updateUser($request, $id);
+     return $this->service->update($request, $id);
 
     }
 
@@ -47,6 +47,6 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {              
-        return $this->userService->deleteUser($id);
+        return $this->service->destroy($id);
     }
 }
