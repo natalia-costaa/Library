@@ -9,29 +9,25 @@ class Repository implements RepositoryInterface {
 
     protected $app;
 
-    protected $model;
-
     public function __construct (Application $app)
     {
         $this->app=$app;
-        $this->makeModel();
     }
 
     public function all()
     {
-        return $this->model->orderBy('id')->get();
+        return $this->app->orderBy('id')->get();
     }
 
     public function show($id)
     {
-        return $this->model->findOrFail($id);
+        return $this->app->findOrFail($id);
     }
 
     public function destroy($id)
     {
-        $item = $this->model->findOrFail($id);
+        $item = $this->app->findOrFail($id);
         return $item->delete($id);
     }
-
 
 }

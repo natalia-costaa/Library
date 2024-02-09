@@ -7,7 +7,7 @@ use App\Models\Book;
 use App\Models\Article;
 use App\Repositories\Contracts\ExemplaryRepositoryInterface;
 
-class ExemplaryRepository implements ExemplaryRepositoryInterface {
+class ExemplaryRepository extends Repository implements ExemplaryRepositoryInterface {
 
         protected $entity;
 
@@ -16,7 +16,7 @@ class ExemplaryRepository implements ExemplaryRepositoryInterface {
         	$this->entity=$exemplary;
    	}	
 
-        public function createExemplary($request)
+        public function store($request) 
         {
                 $exemplary = $this->entity->create($request->all());
 
@@ -37,24 +37,10 @@ class ExemplaryRepository implements ExemplaryRepositoryInterface {
                 }
         }
 
-        public function showExemplary($id)
-        {
-                return $this->entity->findOrFail($id);
-        }
-
-        public function updateExemplary($request, $id)
+	public function update($request, $id) 
         {
                 $user = $this->entity->findOrFail($id);
                 $user->update($request->all());
                 return "Exemplary updated sucessfully!";
         }
-
-        public function deleteExemplary($id)
-        {
-                $user = $this->entity->findOrFail($id);
-                $user->delete();
-                return "Exemplary delete sucessfully!";
-        }
-
-
 }
