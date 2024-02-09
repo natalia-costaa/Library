@@ -6,6 +6,8 @@ use App\Models\User;
 use App\Models\Guardian;
 use App\Models\Student;
 use App\Repositories\Contracts\UserRepositoryInterface;
+use Illuminate\Database\Eloquent\Model;
+
 
 class UserRepository implements UserRepositoryInterface {
 

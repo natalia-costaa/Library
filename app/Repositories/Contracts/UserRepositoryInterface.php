@@ -2,11 +2,10 @@
 
 namespace App\Repositories\Contracts;
 
-interface UserRepositoryInterface {
+interface UserRepositoryInterface extends RepositoryInterface {
 	
-	public function createUser($request);
-	public function showUser($id);
-	public function updateUser($request, $id);
-	public function deleteUser($id);
+	public function store($request);
+
+	public function update($request, $id);
 	
 }

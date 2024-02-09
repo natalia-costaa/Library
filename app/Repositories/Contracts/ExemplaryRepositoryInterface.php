@@ -2,11 +2,10 @@
 
 namespace App\Repositories\Contracts;
 
-interface ExemplaryRepositoryInterface {
+interface ExemplaryRepositoryInterface extends RepositoryInterface {
+	
+	public function store($request);
 
-        public function createExemplary($request);
-        public function showExemplary($id);
-        public function updateExemplary($request, $id);
-        public function deleteExemplary($id);
-
+	public function update($request, $id);
+	
 }
