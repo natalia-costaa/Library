@@ -9,7 +9,7 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Database\Eloquent\Model;
 
 
-class UserRepository implements UserRepositoryInterface {
+class UserRepository extends Repository implements UserRepositoryInterface {
 
 	protected $entity;
 
@@ -18,44 +18,30 @@ class UserRepository implements UserRepositoryInterface {
         $this->entity=$user;
     }
 	
-	public function createUser($request) 
+	public function store($request)
 	{
-		$user = $this->entity->create($request->all());
+		if(!empty($request->cpf)) {
+			Guardian::create([ 
+			 'user_id' => $user->id,
+			 'cpf' => $request->cpf,
+			 ]);
+		 
+		 return "Guardian created sucessfully!";
 
-       		if(!empty($request->cpf)) {
-        	   Guardian::create([ 
-            	'user_id' => $user->id,
-	    		'cpf' => $request->cpf,
-       		 ]);
-			
-			return "Guardian created sucessfully!";
-
-			} else {
-        	  Student:: create([ 
-            	'user_id' => $user->id,
-            	'matricula' => $request->matricula,
-			]);
-			return "Student created sucessfully!";
-			}	
+		 } else {
+		   Student:: create([ 
+			 'user_id' => $user->id,
+			 'matricula' => $request->matricula,
+		 ]);
+		 return "Student created sucessfully!";
+		 }	
 	}
 
-	public function showUser($id)
-	{
-		return $this->entity->findOrFail($id);
-	}
-
-	public function updateUser($request, $id)
+	public function update($request, $id)
 	{
 		$user = $this->entity->findOrFail($id);
 		$user->update($request->all());
 		return "User updated sucessfully!";
-	}
-
-	public function deleteUser($id)
-	{
-		$user = $this->entity->findOrFail($id);
-		$user->delete();
-		return "User delete sucessfully!";
 	}
 
 
