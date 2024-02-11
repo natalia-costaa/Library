@@ -9,7 +9,7 @@ use App\Services\Interfaces\UserServiceInterface;
 class UserController extends Controller
 {
 
-    private $service;
+    private UserServiceInterface $service;
 
     public function __construct(UserServiceInterface $service) {
         $this->service=$service;

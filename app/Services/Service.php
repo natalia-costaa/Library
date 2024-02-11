@@ -1,6 +1,9 @@
 <?php
 
+namespace App\Services;
+
 use App\Repositories\Repository;
+use App\Services\Interfaces\ServiceInterface;
 use Illuminate\Http\Request;
 
 abstract class Service implements ServiceInterface {
@@ -32,6 +35,6 @@ abstract class Service implements ServiceInterface {
         return $this->repository->update($request, $id);
     }
 
-    abstract public function store(Request $request, $id);
+    abstract public function store(Request $request);
 
 }

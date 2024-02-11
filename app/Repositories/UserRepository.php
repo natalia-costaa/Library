@@ -20,6 +20,13 @@ class UserRepository extends Repository implements UserRepositoryInterface {
 	
 	public function store($request)
 	{
+
+		$user = User::create([
+			'name'=> $request->name,
+			'email'=> $request->email,
+			'password'=> $request->password,
+			'user_type'=> User::class]);
+
 		if(!empty($request->cpf)) {
 			Guardian::create([ 
 			 'user_id' => $user->id,
@@ -30,7 +37,7 @@ class UserRepository extends Repository implements UserRepositoryInterface {
 
 		 } else {
 		   Student:: create([ 
-			 'user_id' => $user->id,
+			 'user_id' =>  $user->id,
 			 'matricula' => $request->matricula,
 		 ]);
 		 return "Student created sucessfully!";
