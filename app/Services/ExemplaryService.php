@@ -4,33 +4,17 @@ namespace App\Services;
 
 use App\Repositories\ExemplaryRepository;
 
-class ExemplaryService {
+class ExemplaryService extends Service implements ExemplaryRepositoryInterface {
 
-        private $exemplaryRepository;
+        private $repository;
 
-    public function __construct(ExemplaryRepository $exemplaryRepository) {
-        $this->exemplaryRepository=$exemplaryRepository;
+    public function __construct(ExemplaryRepositoryInterface $repository) {
+        $this->repository=$repository;
     }
 
-        public function createExemplary($request)
+        public function store($request)
         {
-                return $this->exemplaryRepository->createExemplary($request);
+                return $this->repository->store($request);
         }
-
-        public function showexEmplary($id)
-        {
-                return $this->exemplaryRepository->showExemplary($id);
-        }
-
-        public function updateExemplary($request, string $id)
-        {
-                return $this->exemplaryRepository->updateExemplary($request, $id);
-        }
-
-        public function deleteExemplary(string $id)
-        {
-                return $this->exemplaryRepository->deleteExemplary($id);
-        }
-
 
 }

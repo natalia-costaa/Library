@@ -15,6 +15,5 @@ interface ServiceInterface {
     public function update(Request $request, $id);
 
     public function destroy($id);
-
   
 }

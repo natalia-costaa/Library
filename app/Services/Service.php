@@ -3,7 +3,7 @@
 use App\Repositories\Repository;
 use Illuminate\Http\Request;
 
-class Service implements ServiceInterface {
+abstract class Service implements ServiceInterface {
     
     protected $repository;
 
@@ -27,15 +27,11 @@ class Service implements ServiceInterface {
         return $this->repository->destroy($id);
     }
 
-    public function store(Request $request) 
-    {
-        return $this->repository->store(request);
-    }
-
     public function update(Request $request, $id)
     {
-
+        return $this->repository->update($request, $id);
     }
 
-    
+    abstract public function store(Request $request, $id);
+
 }

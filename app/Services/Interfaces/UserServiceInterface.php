@@ -2,7 +2,7 @@
 
 namespace App\Services\Interfaces;
 
-use Illuminate\Http\Request;
+use App\Http\Requests;
 
 interface UserServiceInterface extends ServiceInterface {
 
