@@ -23,7 +23,7 @@ class ExemplaryRepository extends Repository implements ExemplaryRepositoryInter
                 if(!empty($request->editorial)) {
                    Book::create([
 			'exemplary_id' => $exemplary->id,
-			 'editorial' => $request->editorial,
+			'editorial' => $request->editorial,
                  ]);
 
                    return "Book created sucessfully!";
