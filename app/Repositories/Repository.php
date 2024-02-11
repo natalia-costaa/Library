@@ -30,4 +30,14 @@ class Repository implements RepositoryInterface {
         return $item->delete($id);
     }
 
+    public function store($request)
+    {
+
+    }
+
+    public function update($request, $id)
+    {
+        
+    }
+
 }

@@ -4,7 +4,6 @@ namespace App\Services\Interfaces;
 
 use Illuminate\Http\Request;
 
-
 interface ServiceInterface {
 
     public function all();
