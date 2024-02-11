@@ -37,13 +37,6 @@ class UserRepository extends Repository implements UserRepositoryInterface {
 		 }	
 	}
 
-	public function update($request, $id)
-	{
-		$user = $this->entity->findOrFail($id);
-		$user->update($request->all());
-		return "User updated sucessfully!";
-	}
-
 
 }
 

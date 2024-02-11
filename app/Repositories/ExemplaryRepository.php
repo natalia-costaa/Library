@@ -37,10 +37,4 @@ class ExemplaryRepository extends Repository implements ExemplaryRepositoryInter
                 }
         }
 
-	public function update($request, $id) 
-        {
-                $user = $this->entity->findOrFail($id);
-                $user->update($request->all());
-                return "Exemplary updated sucessfully!";
-        }
 }
