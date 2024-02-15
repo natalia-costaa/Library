@@ -17,7 +17,7 @@ class UserTest extends TestCase
 
         $response = $this->post('api/users', [
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'test_student@example.com',
             'user_type' => 'estudante',
             'password' => 'password',
             'matricula' => '1',
@@ -26,6 +26,20 @@ class UserTest extends TestCase
         $response->assertStatus(200);
 
     }
+
+    public function test_create_new_guardian(): void
+    {
+        $response =$this->post('api/users', [
+        'name' => 'Test User',
+        'email' => 'test_guardian@example.com',
+        'user_type' => 'guardian',
+        'password' => 'password1',
+        'cpf' => '11',
+    ]);
+
+        $response->assertStatus(200);
+    }
+
 
     // cria pai
     // cria o mesmo estudante duas vezes (espera um cõdigo de bad request)
