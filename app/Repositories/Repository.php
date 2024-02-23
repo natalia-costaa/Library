@@ -34,7 +34,7 @@ class Repository implements RepositoryInterface {
 
     public function update($request, $id)
     {
-        $item = $this->app->findOrFail($id);
+        $item = $this->app->findOrFail($request->get('id'));
         return $item->update($id);
     }
 

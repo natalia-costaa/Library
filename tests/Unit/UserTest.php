@@ -40,8 +40,33 @@ class UserTest extends TestCase
         $response->assertStatus(200);
     }
 
+   /* public function test_create_same_students_twice(): void
+    {
+        $response=$this->post('api/users', [
+            'name' => 'Test User',
+            'email' => 'test_student@example.com',
+            'user_type' => 'estudante',
+            'password' => 'password',
+            'matricula' => '1',
+        ]);
 
-    // cria pai
+        $response->assertStatus(400);
+    }
+    */
+
+    public function test_user_without_email(): void
+    {
+        $response =$this->post('api/users', [
+            'name' => 'Test User',
+            'user_type' => 'guardian',
+            'password' => 'password1',
+            'cpf' => '11',
+        ]);
+
+        $response->assertStatus(400);
+    }
+
+
     // cria o mesmo estudante duas vezes (espera um cõdigo de bad request)
     // Cria usuário sem matricula, nem cpf (espera um erro bad request dizendo que faltou algum dado)
     // Cria usuario sem email

@@ -10,6 +10,7 @@ class UserController extends Controller
 {
 
     private UserServiceInterface $service;
+    private UserRequest $request;
 
     public function __construct(UserServiceInterface $service) {
         $this->service=$service;
