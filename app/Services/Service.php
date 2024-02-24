@@ -30,7 +30,7 @@ abstract class Service implements ServiceInterface {
         return $this->repository->destroy($id);
     }
 
-    public function update(Request $request, $id)
+    public function update($request, $id)
     {
         return $this->repository->update($request, $id);
     }

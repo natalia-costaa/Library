@@ -2,15 +2,15 @@
 
 namespace App\Services;
 
-use App\Repositories\ExemplaryRepository;
+use App\Repositories\Contracts\ExemplaryRepositoryInterface;
 
 class ExemplaryService extends Service implements ExemplaryRepositoryInterface {
 
-        private $repository;
+        protected $repository;
 
-    public function __construct(ExemplaryRepositoryInterface $repository) {
-        $this->repository=$repository;
-    }
+        public function __construct(ExemplaryRepositoryInterface $repository) {
+            $this->repository=$repository;
+        }
 
         public function store($request)
         {
