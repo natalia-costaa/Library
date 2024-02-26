@@ -15,18 +15,18 @@ use App\Http\Controllers\ExemplaryController;
 |
 */
 
-/*Route::prefix('/users')->group(function() {
-    Route::get('/', [UserController::class,'show']);
-    Route::get('/{user}', [UserController::class,'show']);
+Route::prefix('/users')->group(function() {
+   // Route::get('/', [UserController::class,'index']);
+    Route::get('/{id}', [UserController::class,'show']);
     Route::post('/', [UserController::class,'store']);
-    Route::put('/{user}', [UserController::class,'update']);
-    Route::delete('/{user}', [UserController::class,'destroy']);
+    Route::put('/{id}', [UserController::class,'update']);
+    Route::delete('/{id}', [UserController::class,'destroy']);
 });
-*/
 
 
-Route::resource('users', UserController::class);
+
+/*Route::resource('users', UserController::class);
 Route::resource('exemplaries', ExemplaryController::class);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
-});
+}); */

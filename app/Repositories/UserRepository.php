@@ -11,17 +11,38 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserRepository extends Repository implements UserRepositoryInterface {
 
-	protected $entity;
+/*	protected $entity;
 
 	public function __construct(User $user) 
 	{
         $this->entity=$user;
     }
-	
+*/
 	public function store($request)
 	{
+		$user = $this->model>create([
+			'name'=> $request->name,
+			'email'=> $request->email,
+			'password'=> $request->password,
+			'user_type'=> User::class]);
 
-		$user = User::create([
+			if(!empty($request->cpf)) {
+				Guardian::create([ 
+				 'user_id' => $user->id,
+				 'cpf' => $request->cpf,
+				 ]);
+			 
+			 return "Guardian created sucessfully!";
+	
+			 } else {
+			   Student:: create([ 
+				 'user_id' =>  $user->id,
+				 'matricula' => $request->matricula,
+			   ]);
+			 }
+			
+
+/*		$user = User::create([
 			'name'=> $request->name,
 			'email'=> $request->email,
 			'password'=> $request->password,
@@ -42,7 +63,11 @@ class UserRepository extends Repository implements UserRepositoryInterface {
 		 ]);
 		 return "Student created sucessfully!";
 		 }	
+		 */
+	}
+
+	function model(): string {
+		return User::class;
 	}
 
 }
-

@@ -10,7 +10,7 @@ class UserController extends Controller
 {
 
     private UserServiceInterface $service;
-    private UserRequest $request;
+    //private UserRequest $request;
 
     public function __construct(UserServiceInterface $service) {
         $this->service=$service;
@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function store(UserRequest $request)
     {
- 	  	return $this->service->store($request);
+        return $this->service->store($request);
     }
 
     /**
