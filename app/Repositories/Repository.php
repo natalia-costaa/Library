@@ -2,29 +2,31 @@
 
 namespace App\Repositories;
 
-use Illuminate\Container\Container as Application;
+//use Illuminate\Container\Container as Application;
 use Illuminate\Database\Eloquent\Model;
 use App\Repositories\Contracts\RepositoryInterface;
 
-abstract class Repository implements RepositoryInterface {
+class Repository implements RepositoryInterface {
 
-    protected $app;
+    //protected $app;
 
     protected $model;
 
 
-    public function __construct (Application $app)
+   // public function __construct (Application $app)
+   public function __construct (Model $model)
     {
-        $this->app=$app;
-        $this->makeModel();
+        // $this->app=$app;
+        $this->model = $model;
     }
 
-    public function makeModel()
+    /*public function makeModel()
     {
         $model = $this->app->make($this->model());
 
         return $this->model =$model;
     }
+    */
 
     public function all()
     {
@@ -47,7 +49,5 @@ abstract class Repository implements RepositoryInterface {
         $item = $this->model->findOrFail($id);
         return $item->update($id);
     }
-
-    abstract function model();
 
 }
