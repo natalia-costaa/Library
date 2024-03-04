@@ -13,15 +13,16 @@ class UserRepository extends Repository implements UserRepositoryInterface {
 
 	// protected $entity;
 
-	/*public function __construct(User $user) 
+	public function __construct(User $user) 
 	{
         parent::__construct($user);
     }
-	*/
+	
 	
 
 	public function store($request)
 	{
+		
 		$user= User::create([
 			'name'=> $request->name,
 			'email'=> $request->email,

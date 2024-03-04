@@ -27,7 +27,8 @@ class RepositoryServiceProvider extends ServiceProvider
     $this->app->bind(UserRepository::class, function ($app) { 
         return new UserRepository(new \App\Models\User);
     });
-	
+	$this->app->bind(RepositoryInterface::class, Repository::class);
+    
     $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
 
 	$this->app->bind(ExemplaryRepositoryInterface::class, ExemplaryRepository::class);
