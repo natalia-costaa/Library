@@ -3,21 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Services\ExemplaryService;
 use App\Http\Requests\ExemplaryRequest;
+use App\Services\Interfaces\ExemplaryServiceInterface;
 
 class ExemplaryController extends Controller
 {
 
-    private ExemplaryService $exemplaryService;
+    private ExemplaryServiceInterface $service;
 
-    public function __construct(ExemplaryService $exemplaryService){
-        $this->exemplaryService=$exemplaryService;
+    public function __construct(ExemplaryServiceInterface $service)
+    {
+        $this->service=$service;
     }
 
     public function store(ExemplaryRequest $request)
     {
- 	  	return $this->exemplaryService->createExemplary($request);
+ 	  	return $this->service->store($request);
     }
 
     /**
@@ -25,17 +26,16 @@ class ExemplaryController extends Controller
      */
     public function show(string $id)
     {
-        return $this->exemplaryService->showexemplary($id);
+        return $this->service->show($id);
     }
 
  
     /**
      * Update the specified resource in storage.
      */
-    public function update(exemplaryRequest $request, string $id)
+    public function update(ExemplaryRequest $request, string $id)
     {
-		
-     return $this->exemplaryService->updateExemplary($request, $id);
+		return $this->service->update($request, $id);
 
     }
 
@@ -44,6 +44,6 @@ class ExemplaryController extends Controller
      */
     public function destroy(string $id)
     {              
-        return $this->exemplaryService->deleteExemplary($id);
+        return $this->service->destroy($id);
     }
 }

@@ -9,16 +9,19 @@ use App\Repositories\Contracts\ExemplaryRepositoryInterface;
 
 class ExemplaryRepository extends Repository implements ExemplaryRepositoryInterface {
 
-        protected $entity;
+        // protected $entity;
 
         public function __construct(Exemplary $exemplary)
         {
-        	$this->entity=$exemplary;
+        	parent::__construct($exemplary);
    	}	
 
         public function store($request) 
         {
-                $exemplary = $this->entity->create($request->all());
+                $exemplary= Exemplary::create([
+			'name'=> $request->name,
+			'author'=> $request->author,
+			'exemplary_type'=> Exemplary::class]);
 
                 if(!empty($request->editorial)) {
                    Book::create([
